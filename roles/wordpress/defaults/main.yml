@@ -1,0 +1,4 @@
+wp_mysql_db: mydb
+wp_mysql_user: blog
+wp_mysql_password: blogblog
+wp_mysql_host: terraform-20200916071655354600000003.cjhhutsfdf4c.eu-west-3.rds.amazonaws.com

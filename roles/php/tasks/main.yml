@@ -1,0 +1,5 @@
+---
+- name: Install php extensions
+  apt: name={{ item }} update_cache=yes state=latest
+  loop: [ 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
+  become: true
