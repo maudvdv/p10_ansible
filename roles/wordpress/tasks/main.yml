@@ -14,7 +14,7 @@
 - name: Update default Apache site
   become: true
   lineinfile:
-    dest=/etc/apache2/sites-enabled/your_domain.conf
+    dest=/etc/apache2/sites-enabled/000-default.conf
     regexp="(.)+DocumentRoot /var/www/html"
     line="DocumentRoot /var/www/wordpress"
   notify: restart apache
