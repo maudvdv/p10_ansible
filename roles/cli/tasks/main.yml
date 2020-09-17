@@ -1,0 +1,32 @@
+---
+- name: Check if wp-cli exists
+  stat: path="/bin/wp"
+  register: wpcli_exist
+
+- name: Updating wp-cli
+  become: true
+  shell: "/bin/wp cli update --yes"
+  when: wpcli_exist.stat.exists
+
+- name: Download wp-cli
+  become: true
+  get_url:
+    url="https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
+    dest="/bin/wp"
+    force_basic_auth=yes
+    mode=0755
+
+- name: Install WordPress tables
+  command: wp core install
+            --url="application-lb-1669881942.eu-west-3.elb.amazonaws.com"
+            --title="maud"
+            --admin_user="maudvdv"
+            --admin_password="maudmaud"
+            --admin_email="vandevelde.maud@gmail.com"
+  args:
+      chdir: "/var/www/wordpress/"
+
+- name: publish article
+  shell: wp post create --post_title='Premier post'  --post_content='Youhou' --post_status=publish
+  args:
+      chdir: "/var/www/wordpress/"
