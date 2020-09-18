@@ -18,7 +18,7 @@
 
 - name: Install WordPress tables
   command: wp core install
-            --url="application-lb-1669881942.eu-west-3.elb.amazonaws.com"
+            --url="maudvdv.site"
             --title="maud"
             --admin_user="maudvdv"
             --admin_password="maudmaud"
