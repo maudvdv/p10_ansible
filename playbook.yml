@@ -5,3 +5,4 @@
     - php
     - wordpress
     - cli
+    - memcached

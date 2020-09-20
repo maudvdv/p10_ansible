@@ -27,6 +27,6 @@
       chdir: "/var/www/wordpress/"
 
 - name: publish article
-  shell: wp post create --post_title='Premier post'  --post_content='Youhou' --post_status=publish
+  command: wp post create --post_title='Second post'  --post_content='Youhou' --post_status=publish
   args:
       chdir: "/var/www/wordpress/"
