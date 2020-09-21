@@ -21,12 +21,15 @@
   notify: restart apache
 
 - name: Copy sample config file
-  command: mv /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php creates=/var/www/wordpress/wp-config.php
+  command: mv -f /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php creates=/var/www/wordpress/wp-config.php
   become: true
 
 - name: update wordpress config file to set cookies directory
   become: true
-  shell: echo "define('COOKIE_DOMAIN', 'maudvdv.site' );" >> /var/www/wordpress/wp-config.php
+  shell: | 
+    echo "define('COOKIE_DOMAIN', 'maudvdv.site' );" >> /var/www/wordpress/wp-config.php
+    echo "define('WP_HOME','https://maudvdv.site');" >> /var/www/wordpress/wp-config.php
+    echo "define('WP_SITEURL','https://maudvdv.site');" >> /var/www/wordpress/wp-config.php
 
 - name: Update WordPress config file
   become: true
