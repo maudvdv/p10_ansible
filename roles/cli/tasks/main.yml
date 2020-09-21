@@ -18,7 +18,7 @@
 
 - name: Install WordPress tables
   command: wp core install
-            --url="maudvdv.site"
+            --url="https://maudvdv.site"
             --title="maud"
             --admin_user="maudvdv"
             --admin_password="maudmaud"
