@@ -1,3 +1,4 @@
+
 ---
 - name: Download WordPress  
   get_url:
@@ -22,6 +23,10 @@
 - name: Copy sample config file
   command: mv /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php creates=/var/www/wordpress/wp-config.php
   become: true
+
+- name: update wordpress config file to set cookies directory
+  become: true
+  shell: echo "define('COOKIE_DOMAIN', 'maudvdv.site' );" >> /var/www/wordpress/wp-config.php
 
 - name: Update WordPress config file
   become: true
