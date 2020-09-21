@@ -29,6 +29,7 @@
   shell: | 
     echo "define('WP_HOME','https://maudvdv.site');" >> /var/www/wordpress/wp-config.php
     echo "define('WP_SITEURL','https://maudvdv.site');" >> /var/www/wordpress/wp-config.php
+    echo "$_SERVER['HTTPS']='on';" >> /var/www/wordpress/wp-config.php
 
 - name: Update WordPress config file
   become: true
