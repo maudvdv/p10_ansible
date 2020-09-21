@@ -28,8 +28,8 @@
   become: true
   shell: | 
     echo "define('COOKIE_DOMAIN', 'maudvdv.site' );" >> /var/www/wordpress/wp-config.php
-    echo "define('WP_HOME','https://maudvdv.site');" >> /var/www/wordpress/wp-config.php
-    echo "define('WP_SITEURL','https://maudvdv.site');" >> /var/www/wordpress/wp-config.php
+    echo "define('WP_HOME','http://maudvdv.site');" >> /var/www/wordpress/wp-config.php
+    echo "define('WP_SITEURL','http://maudvdv.site');" >> /var/www/wordpress/wp-config.php
 
 - name: Update WordPress config file
   become: true
