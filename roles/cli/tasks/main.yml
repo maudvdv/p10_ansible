@@ -18,7 +18,7 @@
 
 - name: Install WordPress tables
   command: wp core install
-            --url="maudvdv.site"
+            --url="https://maudvdv.site"
             --title="maud"
             --admin_user="maudvdv"
             --admin_password="maudmaud"
@@ -30,3 +30,4 @@
   command: wp post create --post_title='Second post'  --post_content='Youhou' --post_status=publish
   args:
       chdir: "/var/www/wordpress/"
+  notify: restart apache
