@@ -1,4 +1,7 @@
 ---
+
+
+
 - name: download php memcached client
   become: true
   shell: |
@@ -10,7 +13,21 @@
     
 - name: install plugin w3 total cache
   become: true
-  shell:
+  shell: |
+    chmod 777 wp-content
+    chmod 777 wp-content/uploads
     wp plugin install w3-total-cache --allow-root --activate
+    wp w3-total-cache fix_environment --allow-root
+    chmod 755 wp-content
+    chmod 755 wp-content/uploads
   args:
     chdir: "/var/www/wordpress"
+
+
+- name: install plugin w3 total cache
+  become: true
+  shell:
+    wp w3-total-cache fix_environment --allow-root
+  args:
+    chdir: "/var/www/wordpress"
+
