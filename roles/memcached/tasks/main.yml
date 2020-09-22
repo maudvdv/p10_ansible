@@ -5,7 +5,7 @@
     wget https://elasticache-downloads.s3.amazonaws.com/ClusterClient/PHP-7.2/latest-64bit
     tar -zxvf latest-64bit
     cp amazon-elasticache-cluster-client.so /usr/lib/php/20170718
-    echo "extension=amazon-elasticache-cluster-client.so" | sudo tee --append /etc/php/7.2/cli/php.ini
+    echo "extension=amazon-elasticache-cluster-client.so" | sudo tee --append /etc/php/7.2/apache2/php.ini
   notify: restart apache
     
 - name: install plugin w3 total cache
