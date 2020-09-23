@@ -1,7 +1,4 @@
 ---
-
-
-
 - name: download php memcached client
   become: true
   shell: |
@@ -10,24 +7,33 @@
     cp amazon-elasticache-cluster-client.so /usr/lib/php/20170718
     echo "extension=amazon-elasticache-cluster-client.so" | sudo tee --append /etc/php/7.2/apache2/php.ini
   notify: restart apache
+  tags: test
     
 - name: install plugin w3 total cache
   become: true
   shell: |
     chmod 777 wp-content
-    chmod 777 wp-content/uploads
-    wp plugin install w3-total-cache --allow-root --activate
+    wp plugin install w3-total-cache --activate --allow-root
     wp w3-total-cache fix_environment --allow-root
     chmod 755 wp-content
-    chmod 755 wp-content/uploads
   args:
     chdir: "/var/www/wordpress"
+  notify: restart apache
+  tags: test
 
 
-- name: install plugin w3 total cache
+- name: configure  plugin w3 total cache
   become: true
-  shell:
-    wp w3-total-cache fix_environment --allow-root
+  shell: |
+    chmod 777 /var/www/wordpress/wp-content/w3tc-config
+    chmod 777 /var/www/wordpress/wp-content/cache
+    wp w3-total-cache option set dbcache.enabled true --type=boolean --allow-root
+    wp w3-total-cache option set dbcache.engine "memcached"  --allow-root
+    wp w3-total-cache option set dbcache.memcached.servers "cluster-example.a6otfv.cfg.euw3.cache.amazonaws.com:11211"  --allow-root    
+    chmod 755 wp-content /var/www/wordpress/wp-content/w3tc-config
+    chmod 755 /var/www/wordpress/wp-content/cache  
   args:
     chdir: "/var/www/wordpress"
+  notify: restart apache
+  tags: test
 
