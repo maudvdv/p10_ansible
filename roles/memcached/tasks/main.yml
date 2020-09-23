@@ -29,7 +29,7 @@
     chmod 777 /var/www/wordpress/wp-content/cache
     wp w3-total-cache option set dbcache.enabled true --type=boolean --allow-root
     wp w3-total-cache option set dbcache.engine "memcached"  --allow-root
-    wp w3-total-cache option set dbcache.memcached.servers "cluster-example.a6otfv.cfg.euw3.cache.amazonaws.com:11211"  --allow-root    
+    wp w3-total-cache option set dbcache.memcached.servers {{memcached_server}}  --allow-root    
     chmod 755 wp-content /var/www/wordpress/wp-content/w3tc-config
     chmod 755 /var/www/wordpress/wp-content/cache  
   args:
