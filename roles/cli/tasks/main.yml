@@ -23,11 +23,13 @@
             --admin_user="maudvdv"
             --admin_password="maudmaud"
             --admin_email="vandevelde.maud@gmail.com"
+  run_once: true
   args:
       chdir: "/var/www/wordpress/"
 
 - name: publish article
-  command: wp post create --post_title='Second post'  --post_content='Youhou' --post_status=publish
+  command: wp post create --post_title='Third post'  --post_content='Youhou' --post_status=publish
+  run_once: true  
   args:
       chdir: "/var/www/wordpress/"
   notify: restart apache

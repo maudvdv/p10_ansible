@@ -22,7 +22,7 @@
   tags: test
 
 
-- name: configure  plugin w3 total cache
+- name: configure plugin w3 total cache
   become: true
   shell: |
     chmod 777 /var/www/wordpress/wp-content/w3tc-config
