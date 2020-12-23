@@ -1,11 +1,11 @@
 ---
 - name: download php memcached client
   become: true
-  shell: |
-    wget https://elasticache-downloads.s3.amazonaws.com/ClusterClient/PHP-7.2/latest-64bit
+i shell: |
+    wget https://elasticache-downloads.s3.amazonaws.com/ClusterClient/PHP-7.4/latest-64bit
     tar -zxvf latest-64bit
-    cp amazon-elasticache-cluster-client.so /usr/lib/php/20170718
-    echo "extension=amazon-elasticache-cluster-client.so" | sudo tee --append /etc/php/7.2/apache2/php.ini
+    cp amazon-elasticache-cluster-client.so /usr/lib/php/20190902
+    echo "extension=amazon-elasticache-cluster-client.so" | sudo tee --append /etc/php/7.4/apache2/php.ini
   notify: restart apache
   tags: test
     
