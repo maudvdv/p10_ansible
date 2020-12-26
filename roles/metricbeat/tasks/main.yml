@@ -12,7 +12,7 @@
   become: true
   lineinfile:
     dest=/etc/metricbeat/metricbeat.yml
-    regexp="{{ item.regexp }}
+    regexp="{{ item.regexp }}"
     line="{{ item.line }}"
   loop:
     - { regexp: "localhost:9200", line: "{{elk_endpoint}}:443" }
