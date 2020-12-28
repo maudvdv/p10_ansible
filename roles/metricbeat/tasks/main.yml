@@ -6,7 +6,7 @@
     echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
     apt-get update 
     apt-get install metricbeat
-    systemctl install metricbeat
+    systemctl enable metricbeat
 
 - name: Update metricbeat config file
   become: true
@@ -15,17 +15,17 @@
     regexp="{{ item.regexp }}"
     line="{{ item.line }}"
   loop:
-    - { regexp: "localhost:9200", line: "{{elk_endpoint}}:443" }
-    - { regexp: "# Kibana Host", line: "host : {{elk_endpoint}}:443/_plugin/kibana" }
+    - { regexp: "localhost:9200", line: "  hosts: ['https://{{elk_endpoint}}:443']" }
+    - { regexp: "# Kibana Host", line: "  host : 'https://{{elk_endpoint}}:443/_plugin/kibana'" }
   notify: restart metricbeat
 
 - name: update metricbeat config file
   become: true
   shell: | 
     sed -i "2i\monitoring.enabled: false" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.ilm.enabled: false);" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.pack.security.enabled: false);" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.xpack.watcher.enabled: false);" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.xpack.monitoring.enabled: false);" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\etup.xpack.reporting.enabled: false);" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.ilm.enabled: false)" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.pack.security.enabled: false)" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.xpack.watcher.enabled: false)" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.xpack.monitoring.enabled: false)" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.xpack.reporting.enabled: false)" /etc/metricbeat/metricbeat.yml
 
