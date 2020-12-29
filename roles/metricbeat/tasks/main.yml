@@ -17,7 +17,6 @@
   loop:
     - { regexp: "localhost:9200", line: "  hosts: ['https://{{elk_endpoint}}:443']" }
     - { regexp: "# Kibana Host", line: "  host : 'https://{{elk_endpoint}}:443/_plugin/kibana'" }
-  notify: restart metricbeat
 
 - name: update metricbeat config file
   become: true
@@ -28,4 +27,5 @@
     sed -i "2i\setup.xpack.watcher.enabled: false" /etc/metricbeat/metricbeat.yml
     sed -i "2i\setup.xpack.monitoring.enabled: false" /etc/metricbeat/metricbeat.yml
     sed -i "2i\setup.xpack.reporting.enabled: false" /etc/metricbeat/metricbeat.yml
+  notify: restart metricbeat
 

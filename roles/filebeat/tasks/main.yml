@@ -17,7 +17,6 @@
   loop:
     - { regexp: "localhost:9200", line: "  hosts: ['https://{{elk_endpoint}}:443']" }
     - { regexp: "# Kibana Host", line: "  host : 'https://{{elk_endpoint}}:443/_plugin/kibana'" }
-  notify: restart filebeat
 
 - name: update filebeat config file
   become: true
@@ -28,3 +27,4 @@
     sed -i "2i\setup.xpack.watcher.enabled: false" /etc/filebeat/filebeat.yml
     sed -i "2i\setup.xpack.monitoring.enabled: false" /etc/filebeat/filebeat.yml
     sed -i "2i\setup.xpack.reporting.enabled: false" /etc/filebeat/filebeat.yml
+  notify: restart filebeat
