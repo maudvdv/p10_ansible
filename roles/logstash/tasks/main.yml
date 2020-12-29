@@ -1,4 +1,10 @@
 ---
+- name: install java
+  become: true
+  shell: |
+    apt install openjdk-11-jre-headless
+    export JAVA_HOME="usr/lib/jvm/java-11-openjdk-amd64"
+
 - name: install logstash
   become: true
   shell: | 
