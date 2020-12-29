@@ -3,7 +3,7 @@
   become: true
   shell: |
     chmod 777 wp-content
-    wp plugin install wp-stats-manager --activate --allow-root
+    wp plugin install user-activity-log --activate --allow-root
     chmod 755 wp-content
   args:
     chdir: "/var/www/wordpress"
