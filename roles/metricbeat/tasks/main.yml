@@ -23,9 +23,9 @@
   become: true
   shell: | 
     sed -i "2i\monitoring.enabled: false" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.ilm.enabled: false)" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.pack.security.enabled: false)" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.xpack.watcher.enabled: false)" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.xpack.monitoring.enabled: false)" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.xpack.reporting.enabled: false)" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.ilm.enabled: false" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.pack.security.enabled: false" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.xpack.watcher.enabled: false" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.xpack.monitoring.enabled: false" /etc/metricbeat/metricbeat.yml
+    sed -i "2i\setup.xpack.reporting.enabled: false" /etc/metricbeat/metricbeat.yml
 
