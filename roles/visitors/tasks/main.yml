@@ -1,0 +1,10 @@
+---    
+- name: install plugin w3 statistic 
+  become: true
+  shell: |
+    chmod 777 wp-content
+    wp plugin install wp-stats-manager --activate --allow-root
+    chmod 755 wp-content
+  args:
+    chdir: "/var/www/wordpress"
+  notify: restart apache
