@@ -8,3 +8,4 @@
     - memcached 
     - metricbeat
     - filebeat
+    - visitors
