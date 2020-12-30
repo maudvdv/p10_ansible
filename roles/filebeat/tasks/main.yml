@@ -14,7 +14,7 @@
     cp  ~/repo/filebeat.yml /etc/filebeat/filebeat.yml
     cp ~/repo/pipeline.yml /usr/share/filebeat/module/system/auth/ingest/pipeline.yml
     cp -r ~/repo/apache-aws /usr/share/filebeat/module/
-    cp ~/repo/apache.yml.disabled /etc/filebeat/modules.d/
+    cp ~/repo/apache-aws.yml.disabled /etc/filebeat/modules.d/
 
 - name: Update filebeat config file
   become: true

@@ -1,4 +1,5 @@
 - hosts: wordpress
  
   roles:
-    - logstash
+    - conf
+    - filebeat 
