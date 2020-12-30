@@ -6,7 +6,8 @@
     echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
     apt-get update 
     apt-get install metricbeat
-    metricbeat setup
+    metricbeat modules enable system
+
     systemctl enable metricbeat
 
 - name: cp conf
@@ -21,6 +22,6 @@
     regexp="{{ item.regexp }}"
     line="{{ item.line }}"
   loop:
-    - { regexp: "#host_elactic", line: "  hosts: ['https://{{elk_endpoint}}:443']" }
+    - { regexp: "#host_elastic", line: "  hosts: ['https://{{elk_endpoint}}:443']" }
     - { regexp: "#host_kibana", line: "  host : 'https://{{elk_endpoint}}:443/_plugin/kibana'" }
   notify: restart metricbeat    
