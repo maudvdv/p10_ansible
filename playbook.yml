@@ -9,4 +9,3 @@
     - metricbeat
     - filebeat
     - visitors
-    - logstash
