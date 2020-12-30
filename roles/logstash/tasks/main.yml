@@ -12,11 +12,6 @@
   with_items:
     openjdk-8-jdk
 
-- name: Set JAVA_HOME
-  become: true
-  shell: | 
-    sed -i "1i\JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64" /etc/environment
-
 
 - name: install logstash
   become: true
