@@ -1,0 +1,7 @@
+---
+- name: get conf
+  git:
+    repo: https://github.com/maudvdv/p10_conf.git
+    dest: ~/repo
+  become: true  
+

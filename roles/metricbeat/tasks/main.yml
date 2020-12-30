@@ -6,7 +6,13 @@
     echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
     apt-get update 
     apt-get install metricbeat
+    metricbeat setup
     systemctl enable metricbeat
+
+- name: cp conf
+  become: true
+  shell: 
+    cp -r ~/repo/metricbeat.yml /etc/metricbeat/metricbeat.yml
 
 - name: Update metricbeat config file
   become: true
@@ -15,17 +21,6 @@
     regexp="{{ item.regexp }}"
     line="{{ item.line }}"
   loop:
-    - { regexp: "localhost:9200", line: "  hosts: ['https://{{elk_endpoint}}:443']" }
-    - { regexp: "# Kibana Host", line: "  host : 'https://{{elk_endpoint}}:443/_plugin/kibana'" }
-
-- name: update metricbeat config file
-  become: true
-  shell: | 
-    sed -i "2i\monitoring.enabled: false" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.ilm.enabled: false" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.pack.security.enabled: false" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.xpack.watcher.enabled: false" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.xpack.monitoring.enabled: false" /etc/metricbeat/metricbeat.yml
-    sed -i "2i\setup.xpack.reporting.enabled: false" /etc/metricbeat/metricbeat.yml
-  notify: restart metricbeat
-
+    - { regexp: "#host_elactic", line: "  hosts: ['https://{{elk_endpoint}}:443']" }
+    - { regexp: "#host_kibana", line: "  host : 'https://{{elk_endpoint}}:443/_plugin/kibana'" }
+  notify: restart metricbeat    
