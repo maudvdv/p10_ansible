@@ -1,21 +1,14 @@
 ---
-- name: Update APT package manager repositories cache
-  become: true
-  apt:
-    update_cache: yes
-
 - name: Install OpenJDK Java
   become: yes
-  apt: 
-    name: openjdk-8-jdk
+  apt: name=openjdk-8-jdk update_cache=yes
 
-
-- name: install logstash
+- name: apt install logstash
   become: true
   shell: | 
     wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
     echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
     apt-get update 
-    apt-get install logstash
+    apt-get -y install logstash
     systemctl enable logstash
   notify: restart logstash
