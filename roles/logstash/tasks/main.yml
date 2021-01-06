@@ -9,6 +9,13 @@
   shell: 
     cp -r ~/repo/apache.conf /etc/logstash/conf.d/apache.conf
 
+
+- name: start
+  become: true
+  shell:
+    /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/apache.conf
+
+
 - name: Update logstash config file
   become: true
   lineinfile:
