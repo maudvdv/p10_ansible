@@ -23,5 +23,4 @@
     regexp="{{ item.regexp }}"
     line="{{ item.line }}"
   loop:
-    - { regexp: "#host_elastic", line: "    hosts => ['https://{{elk_endpoint}}:443']" } 
-  notify: restart logstash   
+    - { regexp: "#host_elastic", line: "    hosts => ['https://{{elk_endpoint}}:443']" }  
